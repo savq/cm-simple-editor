@@ -1,0 +1,21 @@
+:root {
+  font-variant-ligatures: none;
+  /*filter: saturate(0%);*/
+}
+
+@media (prefers-color-scheme: light) {
+  .cm-editor {
+    background: #FFFCF4;
+  }
+  :root {
+    --cm-color-comment:   oklch(45%  60% 0deg);
+    --cm-color-keyword:   oklch(45%  80% 30deg);
+    --cm-color-symbol:    oklch(45%  80% 90deg);
+    --cm-color-command:   oklch(35% 100% 120deg);
+    --cm-color-macro:     oklch(45%  80% 150deg);
+    --cm-color-string:    oklch(35% 100% 180deg);
+    --cm-color-literal:   oklch(45%  60% 330deg);
+    --cm-color-variable:  oklch(45%  40% 270deg);
+    --cm-filter-type:     brightness(150%) saturate(50%);
+  }
+}
