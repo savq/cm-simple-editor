@@ -1,12 +1,6 @@
 export default `quote
 
 # this is a line comment
-
-#=
-  this is a block comment
-  #= this is a nested block comment =#
-=#
-
 "this is a string"
 \`this is a command\`
 
@@ -61,19 +55,31 @@ end
   end
 end
 
-
-# Injections
-
 html"""
   <!DOCTYPE html>
   <h1>Title</h1>
   <!-- comment -->
   <div attr=value>foo bar</div>
-"""
 
-js"""
-  let lang = "JavaScript";
-  console.log(\`Greetings from \${lang}\`)
+  <style>
+    /* comment */
+    selector {
+      bg: color(rgb 0 0 0);
+      font-size: 12pt;
+    }
+    :root {
+       --main-bg-color: whitesmoke;
+    }
+    body {
+       background-color: var(--main-bg-color);
+    }
+  </style>
+
+  <script>
+    /* comment */
+    let lang = "JavaScript";
+    console.log(\`Greetings from \${lang}\`)
+  </script>
 """
 
 end;`

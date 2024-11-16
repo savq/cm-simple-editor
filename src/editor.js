@@ -4,6 +4,7 @@ import { parseMixed } from "@lezer/common";
 import { tags as t } from "@lezer/highlight";
 
 import { html, htmlLanguage } from "@codemirror/lang-html";
+import { css, cssLanguage } from "@codemirror/lang-css";
 import { javascript, javascriptLanguage } from "@codemirror/lang-javascript";
 import { julia, juliaLanguage } from "@plutojl/lang-julia";
 
@@ -20,13 +21,10 @@ function findLanguageInjection(node, input) {
     case "html":
       parser = htmlLanguage.parser;
       break;
-    case "js":
-      parser = javascriptLanguage.parser;
-      break;
     default:
       return null;
   }
-  const quotes = node.node.getChildren("quote");
+  const quotes = node.node.getChildren("QuotationMark");
   const quoteSize = quotes[0].to - quotes[0].from;
   const from = node.from + quoteSize + prefixStr.length;
   const to = node.to - quoteSize;
@@ -54,6 +52,14 @@ const highlightStyleJulia = HighlightStyle.define([
   { tag: t.special(t.macroName),    color: "var(--cm-color-macro)" },
   { tag: [t.character, t.literal],  color: "var(--cm-color-literal)" },
   { tag: t.keyword,                 color: "var(--cm-color-keyword)" },
+
+  { tag: t.operator,                color: "var(--cm-color-operator)" },
+  { tag: t.definitionOperator,      color: "var(--cm-color-keyword)" },
+  { tag: t.logicOperator,           color: "var(--cm-color-keyword)" },
+  { tag: t.controlOperator,         color: "var(--cm-color-keyword)" },
+
+  { tag: t.punctuation,             color: "var(--cm-color-keyword)" },
+  { tag: t.bracket,                 color: "var(--cm-color-bracket)" },
 ], { scope: juliaLanguage });
 
 // deno-fmt-ignore
@@ -81,14 +87,36 @@ const highlightStyleHTML = HighlightStyle.define([
   //{ tag: t.processingInstruction, } // <? ... ?>
 ], { scope: htmlLanguage });
 
+const highlightStyleCSS = HighlightStyle.define([
+  { tag: t.comment,           color: "var(--cm-color-comment)" },
+  { tag: t.keyword,           color: "var(--cm-color-keyword)" },
+  { tag: t.variableName,      color: "var(--cm-color-variable)" },
+  { tag: [t.literal, t.unit], color: "var(--cm-color-literal)" },
+
+  { tag: t.propertyName,      color: "var(--cm-color-property)" },
+  { tag: t.className,         color: "var(--cm-color-property)" },
+  { tag: t.tagName,           color: "var(--cm-color-property)" },
+
+  { tag: t.definitionOperator, color: "var(--cm-color-string)" },
+
+  //{ tag: t.keyword, color: "var(--cm-css-color)" },
+  //{ tag: t.modifier, color: "var(--cm-css-accent-color)" },
+  //
+  //{ tag: t.className, color: "var(--cm-css-why-doesnt-codemirror-highlight-all-the-text-aaa)" },
+  //{ tag: t.constant(tags.className), color: "var(--cm-css-why-doesnt-codemirror-highlight-all-the-text-aaa)" },
+
+], { scope: cssLanguage })
+
 const editor = new EditorView({
-  doc: syntaxSample,
+  doc: codeSample,
   extensions: [
     basicSetup,
-    syntaxHighlighting(highlightStyleJulia),
+    syntaxHighlighting(highlightStyleCSS),
     syntaxHighlighting(highlightStyleHTML),
     syntaxHighlighting(highlightStyleJavascript),
+    syntaxHighlighting(highlightStyleJulia),
     juliaMixed({ enableKeywordCompletion: true }),
+    css(),
     html(),
     javascript(),
   ],

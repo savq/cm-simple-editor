@@ -5,17 +5,31 @@
 
 @media (prefers-color-scheme: light) {
   .cm-editor {
-    background: #FFFCF4;
+    background: #FFFCF5; /* Pluto */
   }
   :root {
-    --cm-color-comment:   oklch(45%  60% 0deg);
-    --cm-color-keyword:   oklch(45%  80% 30deg);
-    --cm-color-symbol:    oklch(45%  80% 90deg);
-    --cm-color-command:   oklch(35% 100% 120deg);
-    --cm-color-macro:     oklch(45%  80% 150deg);
-    --cm-color-string:    oklch(35% 100% 180deg);
-    --cm-color-literal:   oklch(45%  60% 330deg);
-    --cm-color-variable:  oklch(45%  40% 270deg);
-    --cm-filter-type:     brightness(150%) saturate(50%);
+    /*--cm-color-comment:   oklch(45%  60% 0deg);*/
+    /*--cm-color-keyword:   oklch(45%  80% 30deg);*/
+    /*--cm-color-symbol:    oklch(45%  80% 90deg);*/
+    /*--cm-color-command:   oklch(35% 100% 120deg);*/
+    /*--cm-color-macro:     oklch(45%  80% 150deg);*/
+    /*--cm-color-string:    oklch(35% 100% 180deg);*/
+    /*--cm-color-literal:   oklch(45%  60% 330deg);*/
+    /*--cm-color-variable:  oklch(45%  40% 270deg);*/
+    /*--cm-filter-type:     brightness(150%) saturate(50%);*/
+
+    --cm-color-comment:     #b62a66;
+    --cm-color-keyword:     #b13e30;
+    --cm-color-symbol:      #9b570d;
+    --cm-color-command:     #607020;
+    --cm-color-macro:       #327644;
+    --cm-color-string:      #3a727b;
+    --cm-color-variable:    #5466a5;
+    --cm-color-literal:     #8e5189;
+    --cm-filter-type:        brightness(150%) saturate(50%);;
+
+    --cm-color-operator:    #F0F;
+    --cm-color-bracket:     #F00;
+    --cm-color-separator:   #F00;
   }
 }
