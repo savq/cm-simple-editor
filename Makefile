@@ -1,2 +1,10 @@
-build: index.html styles.css src/*
-	pnpx rollup -c
+# NPM ?= pnpm
+NPM ?= yarn
+
+.PHONY: build
+
+build: src/*
+	$(NPM) run prepare
+
+install:
+	$(NPM) install
